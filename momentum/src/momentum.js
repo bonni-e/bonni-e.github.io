@@ -102,7 +102,42 @@ else {
 const todoForm = document.querySelector(".todo-form");
 const form = todoForm.querySelector("form");
 const todoText = document.querySelector(".todo-text");
+const list = todoText.querySelector(".list");
+const checkbox = list.querySelector("#check");
+const checkImg = list.querySelector("img");
+const delBtn = list.querySelector("button");
+
 todoText.setAttribute("style", "display : none");
+checkImg.setAttribute("style", "display : none");
+delBtn.setAttribute("style", "display : none");
+
+list.addEventListener("mouseenter", e => {
+    delBtn.setAttribute("style", "display : block");
+    checkImg.setAttribute("style", "display : block");
+});
+
+list.addEventListener("mouseleave", e => {
+    delBtn.setAttribute("style", "display : none");
+    if (checkbox.checked === false) {
+        checkImg.setAttribute("style", "display : none");
+    }
+});
+
+checkImg.addEventListener("click", e => {
+    if(checkbox.checked === false) {
+        checkImg.setAttribute("src", "https://em-content.zobj.net/thumbs/240/toss-face/342/check-box-with-check_2611-fe0f.png");
+        checkImg.setAttribute("style", "display : block");
+    }
+    else {
+        checkImg.setAttribute("src", "https://em-content.zobj.net/thumbs/240/toss-face/342/white-square-button_1f533.png");
+        checkImg.setAttribute("style", "display : none");
+    }
+});
+
+delBtn.addEventListener("click", e => {
+    localStorage.removeItem("todo");
+    location.reload();
+});
 
 let todo = localStorage.getItem("todo");
 

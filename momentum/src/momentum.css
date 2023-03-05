@@ -37,7 +37,8 @@ body {
     font-size: 7em;
 }
 
-.todo-form, .todo-text {
+.todo-form,
+.todo-text {
     margin-top: 40px;
 }
 
@@ -94,4 +95,40 @@ h2 {
 
 .todo-text>span {
     font-size: 2em;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+.list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    margin: auto;
+    gap: 10px;
+}
+
+.list span {
+    font-size: 2em;
+}
+
+.list img, .list button>img {
+    width: 30px;
+    height: 30px;
+}
+
+.list button {
+    border: none;
+    background: none;
+}
+
+.list #check-img:hover,
+.list>button:hover {
+    cursor: pointer;
+}
+
+.list input[type="checkbox"]:checked ~ span {
+    text-decoration: line-through;
 }
