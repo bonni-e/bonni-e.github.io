@@ -4,9 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shorcut icon" href="https://em-content.zobj.net/source/skype/289/night-with-stars_1f303.png">
+    <link rel="stylesheet" href="src/momentum.css">
     <title>Momentum</title>
 </head>
 <body>
+    <div id="filter"></div>
+    <div id="root">
+        <div class="timer">
+            <h1 id="time">00:00:00</h1>
+            <h1 id="message">Good morning, 김지연.</h1>
+        </div>
+        <div class="todo-form">
+            <h2>What's your main forcus for today?</h2>
+            <form>
+                <input type="text" id="todo">
+            </form>
+        </div>
+        <div class="todo-text">
+            <h2>TODAY</h2>
+            <input type="checkbox">
+            <span></span>
+            <button>X</button>
+        </div>
+    </div>
     <script type="text/javascript" src="src/momentum.js"></script>
 </body>
 </html>
