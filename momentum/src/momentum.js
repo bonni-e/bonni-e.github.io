@@ -129,7 +129,7 @@ list.addEventListener("mouseleave", e => {
 });
 
 checkImg.addEventListener("click", e => {
-    if(checkbox.checked === false) {
+    if (checkbox.checked === false) {
         checkImg.setAttribute("src", "https://em-content.zobj.net/thumbs/240/toss-face/342/check-box-with-check_2611-fe0f.png");
         checkImg.setAttribute("style", "display : block");
     }
@@ -146,7 +146,7 @@ delBtn.addEventListener("click", e => {
 
 let todo = localStorage.getItem("todo");
 
-if(todo !== null) {
+if (todo !== null) {
     todoForm.setAttribute("style", "display : none");
     todoText.setAttribute("style", "display : block");
     todoText.querySelector("span").innerText = todo;
@@ -202,15 +202,44 @@ function showPosition(position) {
     })
         .done(res => {
             city = res.name;
+            city = papago(city);
+
             temp = Math.round((res.main.temp - 273.15) * 100) / 100; // K to C
 
             let result = "";
             res.weather.forEach(w => {
                 desc = w.description;
+                desc = papago(desc);
+                
                 imgUrl = `http://openweathermap.org/img/wn/${w.icon}@2x.png`;
 
                 result += `<div class="block"><img src=${imgUrl}><p><strong>${city}</strong><br>${desc}</p></div>`;
             });
             $(whether).append(result);
         });
+}
+
+function papago(text) {
+    if (text !== "") {
+        const settings = {
+            "url": "https://openapi.naver.com/v1/papago/n2mt",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "X-Naver-Client-Id": "kKZ7PkRX0ZP8XFuGwFn_",
+                "X-Naver-Client-Secret": "LD0OJr0Qvl",
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify({
+                "source": "en",
+                "target": "ko",
+                "text": `${text}`
+            }),
+        };
+
+        $.ajax(settings)
+        .done(function (response) {
+            return response.message.result.translatedText;
+        });
+    }
 }
