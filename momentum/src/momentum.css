@@ -135,7 +135,7 @@ input[type="checkbox"] {
 
 .whether {
     float: right;
-    width: 100px;
+    width: fit-content;
     height: 100px;
     z-index: 1;
 }
