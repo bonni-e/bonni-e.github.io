@@ -139,3 +139,14 @@ input[type="checkbox"] {
     height: 100px;
     z-index: 1;
 }
+
+.block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.block>p {
+    color: whitesmoke;
+    font-size: 0.8em;
+}

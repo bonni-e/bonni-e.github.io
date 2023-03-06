@@ -209,7 +209,7 @@ function showPosition(position) {
                 desc = w.description;
                 imgUrl = `http://openweathermap.org/img/wn/${w.icon}@2x.png`;
 
-                result += `<div><img src=${imgUrl}><p>${desc}</p></div>`;
+                result += `<div class="block"><img src=${imgUrl}><p>[${city}] ${desc}</p></div>`;
             });
             $(whether).append(result);
         });
