@@ -201,8 +201,6 @@ function showPosition(position) {
         async: true
     })
         .done(res => {
-            console.log(res);
-
             city = res.name;
             temp = Math.round((res.main.temp - 273.15) * 100) / 100; // K to C
 
@@ -210,13 +208,9 @@ function showPosition(position) {
             res.weather.forEach(w => {
                 desc = w.description;
                 imgUrl = `http://openweathermap.org/img/wn/${w.icon}@2x.png`;
-                // console.log("imgUrl: ", imgUrl);
-
-                // console.log(`${city} : ${temp}'C (${desc})`);
-                // console.log('imgUrl:', imgUrl);
 
                 result += `<div><img src=${imgUrl}><p>${desc}</p></div>`;
             });
-            whether.append(result);
+            whether.innerHTML(result);
         });
 }
