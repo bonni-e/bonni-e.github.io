@@ -155,5 +155,6 @@ input[type="checkbox"] {
 
 .block>p {
     color: whitesmoke;
+    text-align: center;
     font-size: 0.8em;
 }
