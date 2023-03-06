@@ -6,7 +6,7 @@
 // 로컬 스토리지를 사용한 로그인        [O]
 // 로컬 스토리지를 사용한 투두리스트     [O]
 // 랜덤 배경 이미지                  [O]
-// 날씨와 위치(geolocation)         [X]
+// 날씨와 위치(geolocation)         [O]
 // 여러분의 CSS 실력을 뽐내주세요💖
 
 let currentTime = 0;
@@ -15,6 +15,7 @@ const body = document.querySelector("body");
 const root = document.getElementById("root");
 const time = document.querySelector("#time");
 const message = document.querySelector("#message");
+
 
 // 1. clock 
 setTimePerSecond();
@@ -33,6 +34,7 @@ function setTimePerSecond() {
     time.innerText = str;
     currentTime = h;
 
+
     // 2. random background
     const backgroundState = localStorage.getItem("background");
     if (backgroundState === null || parseInt(backgroundState) === s) {
@@ -46,6 +48,7 @@ function setBackground() {
     const random = Math.floor(Math.random() * 10) + 1;
     body.setAttribute("style", `background-image : url('src/images/bg-${random}.jpeg')`);
 }
+
 
 // 3. login
 const username = window.localStorage.getItem("username");
@@ -97,6 +100,7 @@ else {
 
     body.append(form);
 }
+
 
 // 4. todo list
 const todoForm = document.querySelector(".todo-form");
@@ -158,4 +162,62 @@ form.addEventListener("submit", e => {
 
         localStorage.setItem("todo", todo);
     }
-})
+});
+
+
+// 5. whether api 
+let lat = 0;
+let lon = 0;
+
+let city = "";
+let temp = 0;
+let desc = "";
+let imgUrl = ""
+
+window.onload = function () {
+    getLocation();
+}
+
+function getLocation() {
+    console.log("call getLocation()")
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        document.body.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    console.log("Latitude: " + position.coords.latitude);
+    console.log("Longitude: " + position.coords.longitude);
+
+    lat = position.coords.latitude;     // 위도 
+    lon = position.coords.longitude;    // 경도
+
+    // get api
+    $.ajax({
+        method: 'get',
+        url: `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=dd67246c48ce316a0eb8eb1ef7eaba20`,
+        async: true
+    })
+        .done(res => {
+            console.log(res);
+
+            // city = res.name;
+            // temp = Math.round((res.main.temp - 273.15) * 100) / 100; // K to C
+
+            // let result = "";
+            // res.weather.forEach(w => {
+            //     desc = w.description;
+            //     imgUrl = `http://openweathermap.org/img/wn/${w.icon}@2x.png`;
+            //     console.log("imgUrl: ", imgUrl);
+
+            //     console.log(`${city} : ${temp}'C (${desc})`);
+            //     console.log('imgUrl:', imgUrl);
+
+            //     result += `<div class="block"><img src=${imgUrl}><br>${desc}<br></div>`;
+            // });
+            // $('.result').append(result);
+            // $('body').append(`<p>${city}<br>${temp}'C</p>`);
+        });
+}
