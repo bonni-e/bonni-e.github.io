@@ -210,7 +210,7 @@ function showPosition(position) {
             res.weather.forEach(w => {
                 desc = w.description;
                 desc = papago(desc);
-                
+
                 imgUrl = `http://openweathermap.org/img/wn/${w.icon}@2x.png`;
 
                 result += `<div class="block"><img src=${imgUrl}><p><strong>${city}</strong><br>${desc}</p></div>`;
@@ -223,7 +223,7 @@ function papago(text) {
     if (text !== "") {
         const settings = {
             "url": "https://openapi.naver.com/v1/papago/n2mt",
-            "method": "POST",
+            "method": "GET",
             "timeout": 0,
             "headers": {
                 "X-Naver-Client-Id": "kKZ7PkRX0ZP8XFuGwFn_",
