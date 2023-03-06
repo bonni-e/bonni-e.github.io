@@ -158,3 +158,9 @@ input[type="checkbox"] {
     text-align: center;
     font-size: 0.8em;
 }
+
+@media screen and (width > 200vh) {
+    body {
+        background-size: 130% auto;
+    }
+}
