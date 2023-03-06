@@ -144,6 +144,12 @@ input[type="checkbox"] {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 10px;
+}
+
+.block>img {
+    width: 60px;
+    height: 60px;
 }
 
 .block>p {
