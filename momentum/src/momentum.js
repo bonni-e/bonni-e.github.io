@@ -211,6 +211,6 @@ function showPosition(position) {
 
                 result += `<div><img src=${imgUrl}><p>${desc}</p></div>`;
             });
-            whether.innerHTML(result);
+            $(whether).append(result);
         });
 }
