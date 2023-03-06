@@ -17,6 +17,7 @@ const time = document.querySelector("#time");
 const message = document.querySelector("#message");
 const whether = document.querySelector(".whether");
 
+const [cold, warm, hot] = ["#96CEB4", "#FFAD60", "#D9534F"];
 
 // 1. clock 
 setTimePerSecond();
@@ -213,5 +214,16 @@ function showPosition(position) {
                 result += `<div class="block"><img src=${imgUrl}><p><strong>${city}</strong><br>${temp}℃ ${desc}</p></div>`;
             });
             $(whether).append(result);
+
+            const tempText = whether.querySelector(".block p strong");
+            if(temp < 10) {
+                tempText.setAttribute("style", `color : ${cold}`)
+            }
+            else if(temp >= 10 && temp < 23) {
+                tempText.setAttribute("style", `color : ${warm}`)
+            }
+            else if(temp >= 23) {
+                tempText.setAttribute("style", `color : ${hot}`)
+            }
         });
 }
