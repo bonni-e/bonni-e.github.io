@@ -15,6 +15,7 @@ const body = document.querySelector("body");
 const root = document.getElementById("root");
 const time = document.querySelector("#time");
 const message = document.querySelector("#message");
+const whether = document.querySelector(".whether");
 
 
 // 1. clock 
@@ -179,7 +180,6 @@ window.onload = function () {
 }
 
 function getLocation() {
-    console.log("call getLocation()")
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
@@ -203,21 +203,20 @@ function showPosition(position) {
         .done(res => {
             console.log(res);
 
-            // city = res.name;
-            // temp = Math.round((res.main.temp - 273.15) * 100) / 100; // K to C
+            city = res.name;
+            temp = Math.round((res.main.temp - 273.15) * 100) / 100; // K to C
 
-            // let result = "";
-            // res.weather.forEach(w => {
-            //     desc = w.description;
-            //     imgUrl = `http://openweathermap.org/img/wn/${w.icon}@2x.png`;
-            //     console.log("imgUrl: ", imgUrl);
+            let result = "";
+            res.weather.forEach(w => {
+                desc = w.description;
+                imgUrl = `http://openweathermap.org/img/wn/${w.icon}@2x.png`;
+                // console.log("imgUrl: ", imgUrl);
 
-            //     console.log(`${city} : ${temp}'C (${desc})`);
-            //     console.log('imgUrl:', imgUrl);
+                // console.log(`${city} : ${temp}'C (${desc})`);
+                // console.log('imgUrl:', imgUrl);
 
-            //     result += `<div class="block"><img src=${imgUrl}><br>${desc}<br></div>`;
-            // });
-            // $('.result').append(result);
-            // $('body').append(`<p>${city}<br>${temp}'C</p>`);
+                result += `<div><img src=${imgUrl}><p>${desc}</p></div>`;
+            });
+            whether.append(result);
         });
 }

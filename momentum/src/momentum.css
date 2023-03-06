@@ -132,3 +132,10 @@ input[type="checkbox"] {
 .list input[type="checkbox"]:checked ~ span {
     text-decoration: line-through;
 }
+
+.whether {
+    float: right;
+    width: 100px;
+    height: 100px;
+    z-index: 1;
+}
