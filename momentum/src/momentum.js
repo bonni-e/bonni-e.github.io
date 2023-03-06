@@ -207,7 +207,6 @@ function showPosition(position) {
             let result = "";
             res.weather.forEach(w => {
                 desc = w.description;
-                desc = papago(desc);
 
                 imgUrl = `http://openweathermap.org/img/wn/${w.icon}@2x.png`;
 
@@ -227,7 +226,9 @@ function papago(text) {
             "headers": {
                 "X-Naver-Client-Id": "kKZ7PkRX0ZP8XFuGwFn_",
                 "X-Naver-Client-Secret": "LD0OJr0Qvl",
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'post'
             },
             "data": JSON.stringify({
                 "source": "en",
