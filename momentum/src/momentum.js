@@ -223,7 +223,7 @@ function papago(text) {
     if (text !== "") {
         const settings = {
             "url": "https://openapi.naver.com/v1/papago/n2mt",
-            "method": "GET",
+            "method": "post",
             "timeout": 0,
             "headers": {
                 "X-Naver-Client-Id": "kKZ7PkRX0ZP8XFuGwFn_",
