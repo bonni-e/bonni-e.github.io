@@ -210,36 +210,8 @@ function showPosition(position) {
 
                 imgUrl = `http://openweathermap.org/img/wn/${w.icon}@2x.png`;
 
-                result += `<div class="block"><img src=${imgUrl}><p><strong>${city}</strong><br>${desc}</p></div>`;
+                result += `<div class="block"><img src=${imgUrl}><p><strong>${city}</strong><br>${temp}℃ ${desc}</p></div>`;
             });
             $(whether).append(result);
         });
-}
-
-console.log(papago('seoul'));
-function papago(text) {
-    if (text !== "") {
-        const settings = {
-            "url": "https://openapi.naver.com/v1/papago/n2mt",
-            "method": "post",
-            "timeout": 0,
-            "headers": {
-                "X-Naver-Client-Id": "kKZ7PkRX0ZP8XFuGwFn_",
-                "X-Naver-Client-Secret": "LD0OJr0Qvl",
-                "Content-Type": "application/json",
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'post'
-            },
-            "data": JSON.stringify({
-                "source": "en",
-                "target": "ko",
-                "text": `${text}`
-            }),
-        };
-
-        $.ajax(settings)
-        .done(function (response) {
-            return response.message.result.translatedText;
-        });
-    }
 }
