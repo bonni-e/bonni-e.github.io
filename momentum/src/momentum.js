@@ -211,11 +211,11 @@ function showPosition(position) {
 
                 imgUrl = `http://openweathermap.org/img/wn/${w.icon}@2x.png`;
 
-                result += `<div class="block"><img src=${imgUrl}><p><strong>${city}</strong><br>${temp}℃ ${desc}</p></div>`;
+                result += `<div class="block"><img src=${imgUrl}><p><strong>${city}</strong><br><span>${temp}℃</span> ${desc}</p></div>`;
             });
             $(whether).append(result);
 
-            const tempText = whether.querySelector(".block p strong");
+            const tempText = whether.querySelector(".block p span");
             if(temp < 10) {
                 tempText.setAttribute("style", `color : ${cold}`)
             }
