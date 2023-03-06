@@ -202,8 +202,6 @@ function showPosition(position) {
     })
         .done(res => {
             city = res.name;
-            city = papago(city);
-
             temp = Math.round((res.main.temp - 273.15) * 100) / 100; // K to C
 
             let result = "";
@@ -219,6 +217,7 @@ function showPosition(position) {
         });
 }
 
+console.log(papago('seoul'));
 function papago(text) {
     if (text !== "") {
         const settings = {
